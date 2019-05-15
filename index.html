@@ -4,8 +4,11 @@
   <meta charset="utf-8">
   <title>England Map - European Electoral Districts</title>
   <style>
+    h3 {
+      text-align: center;
+    }
   .boundary {
-    fill: #ddd;
+    fill: #E5C77D; /* old value #ddd */
     stroke: #888;
     stroke-linejoin: round;
   }
@@ -13,6 +16,10 @@
     border-style: solid;
     border-width: 1px;
     border-color: #ccc;
+  }
+  #map {
+    width: 1000px;
+    margin: 0 auto;
   }
   </style>
 </head>
@@ -25,8 +32,8 @@
   <script>
     (function() {
 
-      var height = 800,
-          width = 1200,
+      var height = 700,
+          width = 1000,
           projection = d3.geoMercator(),
           UKEER = void 0;
 
@@ -61,8 +68,13 @@
            .attr('d', path);
 
         //Update
-        UKEER.attr('fill', '#eee');
-
+        UKEER.attr('fill', '#eee'); //old value #eee
+        //choropleth code
+        /*
+        var color = d3.scale.linear().domain([0,33]).range(['red','yellow']);
+        UKEER.attr('fill', function(d,i) {return color(i)})
+        */
+        
         //Exit
         UKEER.exit().remove();
       });
