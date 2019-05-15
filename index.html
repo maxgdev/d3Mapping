@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>England Map - Local Authority Districts</title>
+  <title>England Map - European Electoral Districts</title>
   <style>
   .boundary {
     fill: #ddd;
@@ -17,7 +17,7 @@
   </style>
 </head>
 <body>
-  <h3>England Map - Local Authority Districts</h3>
+  <h3>England Map - European Electoral Districts</h3>
   <div id="map"></div>
   <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
   <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.js"></script>
@@ -28,7 +28,7 @@
       var height = 800,
           width = 1200,
           projection = d3.geoMercator(),
-          ukLAD = void 0;
+          UKEER = void 0;
 
       // Special d3 helper that converts geo coordinates to paths
       // based on a projection
@@ -41,30 +41,30 @@
 
       d3.json('geo-data.json').then(function(data) {
 
-        console.log('ukLAD', data);
-        var councils = topojson.feature(data, data.objects.lad);
+        console.log('UKEER', data);
+        var regions = topojson.feature(data, data.objects.eer);
 
         // Setup the scale and translate
         var b, s, t;
         projection.scale(1).translate([0, 0]);
-        var b = path.bounds(councils);
+        var b = path.bounds(regions);
         var s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height);
         var t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
         projection.scale(s).translate(t);
 
         var map = svg.append('g').attr('class', 'boundary');
-        ukLAD = map.selectAll('path').data(councils.features);
+        UKEER = map.selectAll('path').data(regions.features);
 
         //Enter
-        ukLAD.enter()
+        UKEER.enter()
            .append('path')
            .attr('d', path);
 
         //Update
-        ukLAD.attr('fill', '#eee');
+        UKEER.attr('fill', '#eee');
 
         //Exit
-        ukLAD.exit().remove();
+        UKEER.exit().remove();
       });
 
     })();
