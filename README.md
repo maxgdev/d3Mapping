@@ -9,3 +9,5 @@ Using EU Electoral regions instead of Local Authority Districts.
 Smaller data set. Less than half the size, hence loads quicker
 Also temporally relevant. EU elections on 23/05/2019
 
+EU Election data obtained from : 
+	https://www.electoralcommission.org.uk/our-work/our-research
